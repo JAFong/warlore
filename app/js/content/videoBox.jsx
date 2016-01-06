@@ -1,4 +1,3 @@
-import React from 'react';
 import YouTubePlayer from './youtubePlayer.jsx'
 import EasterEgg from './easterEgg.jsx'
 import VideoControls from './videoControls.jsx'

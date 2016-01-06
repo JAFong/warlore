@@ -1,5 +1,3 @@
-import React from 'react';
-
 class FooterBox extends React.Component {
   render() {
     return <div className="footer-box">I am a footer box!</div>

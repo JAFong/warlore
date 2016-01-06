@@ -1,5 +1,3 @@
-import React from 'react';
-
 var playerParams = {
   autoplay: 0,
   controls: 0,
