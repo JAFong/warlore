@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CanvasOverlay extends React.Component {
+class VideoControls extends React.Component {
   render() {
     return (
       <div></div>
@@ -8,4 +8,4 @@ class CanvasOverlay extends React.Component {
   }
 }
 
-export default CanvasOverlay
+export default VideoControls;
