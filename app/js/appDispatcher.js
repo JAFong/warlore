@@ -1,5 +1,5 @@
 import Dispatcher from 'flux';
 
-var AppDispatcher = new Dispatchers();
+var AppDispatcher = new Dispatcher.Dispatcher();
 
 export default AppDispatcher;

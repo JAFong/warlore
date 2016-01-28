@@ -1,7 +1,11 @@
+import VideoControlBar from './videoControlBar.jsx'
+
 class VideoControls extends React.Component {
   render() {
     return (
-      <div></div>
+      <div>
+        <VideoControlBar></VideoControlBar>
+      </div>
     )
   }
 }
