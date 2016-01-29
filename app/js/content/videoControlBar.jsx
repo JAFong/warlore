@@ -6,20 +6,19 @@ class VideoControlBar extends React.Component {
     this.state = {
       playerTime: TimeStore.getTime()
     }
-    console.log(Flux);
-    console.log(this.state);
   }
   componentDidMount() {
     this.store = TimeStore;
-    this.store.addChangeListener(this.onStoreChange);
+    this.store.addChangeListener(this.onStoreChange.bind(this));
   }
   componentWillUnmount() {
-    this.store.removeChangeListener(this.onStoreChange);
+    this.store.removeChangeListener(this.onStoreChange.bind(this));
   }
   onStoreChange() {
-    this.setState({
-      playerTime: this.store.getTime()
-    })
+    var self = this;
+    self.setState({
+      playerTime: self.store.getTime()
+    });
   }
   render () {
     return (

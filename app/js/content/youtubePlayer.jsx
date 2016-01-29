@@ -1,10 +1,13 @@
+import AppDispatcher from '../AppDispatcher.jsx'
+
 var playerParams = {
   autoplay: 0,
   controls: 0,
   showinfo: 0,
   rel: 0,
   modestbranding: true,
-  wmode: "transparent"
+  wmode: "transparent",
+  // enablejsapi: 1
 };
 
 class YouTubePlayer extends React.Component {
@@ -33,25 +36,32 @@ class YouTubePlayer extends React.Component {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    var player;
+    this.player;
     window.onYouTubeIframeAPIReady = function() {
-      player = new YT.Player('YTplayer', {
+      this.player = new YT.Player('YTplayer', {
         videoId: this.state.videoId,
         events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange,
+          'onReady': onPlayerReady.bind(this),
+          'onStateChange': onPlayerStateChange.bind(this),
         }
       })
     }.bind(this);
 
     function onPlayerReady(event) {
+      setInterval(function() {
+        var currentTime = this.player.getCurrentTime();
+        var percentagePlayed = (currentTime / this.player.getDuration());
+        AppDispatcher.dispatch({
+          eventName: 'timeChange',
+          time: {
+            currentTime: currentTime,
+            percentagePlayed: percentagePlayed
+          }
+        })
+      }.bind(this), 500)
     }
 
     function onPlayerStateChange(event) {
-      AppDispatcher.dispatch({
-        eventName: '',
-        item: {key: 'property'}
-      })
     }
 
     function stopVideo() {
