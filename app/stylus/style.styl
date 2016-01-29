@@ -1,4 +1,6 @@
 @require mixins
+@require animations
+
 html, body
   height: 100%
 
@@ -45,3 +47,15 @@ body
   left: 0
   width: 100% !important
   height: 100% !important
+
+.progress-background
+  position: absolute
+  width: 100%
+  background-color: grey
+  height: 5px
+  z-index: 1
+  bottom: 65px
+  animation: reduceProgress 1.0s forwards
+
+.progress-background:hover
+  animation: expandProgress 1.0s forwards

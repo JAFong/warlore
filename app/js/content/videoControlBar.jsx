@@ -22,7 +22,9 @@ class VideoControlBar extends React.Component {
   }
   render () {
     return (
-      <div>SomethingSomethingSomethingSomething</div>
+      <div className="progress-background">
+        <div className="progress-crawler"></div>
+      </div>
     )
   }
 }

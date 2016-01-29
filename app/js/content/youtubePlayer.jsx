@@ -4,9 +4,9 @@ var playerParams = {
   autoplay: 0,
   controls: 0,
   showinfo: 0,
+  wmode: "transparent",
   rel: 0,
   modestbranding: true,
-  wmode: "transparent",
   // enablejsapi: 1
 };
 
@@ -48,17 +48,17 @@ class YouTubePlayer extends React.Component {
     }.bind(this);
 
     function onPlayerReady(event) {
-      setInterval(function() {
-        var currentTime = this.player.getCurrentTime();
-        var percentagePlayed = (currentTime / this.player.getDuration());
-        AppDispatcher.dispatch({
-          eventName: 'timeChange',
-          time: {
-            currentTime: currentTime,
-            percentagePlayed: percentagePlayed
-          }
-        })
-      }.bind(this), 500)
+      // setInterval(function() {
+      //   var currentTime = this.player.getCurrentTime();
+      //   var percentagePlayed = (currentTime / this.player.getDuration());
+      //   AppDispatcher.dispatch({
+      //     eventName: 'timeChange',
+      //     time: {
+      //       currentTime: currentTime,
+      //       percentagePlayed: percentagePlayed
+      //     }
+      //   })
+      // }.bind(this), 500)
     }
 
     function onPlayerStateChange(event) {

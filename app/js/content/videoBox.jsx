@@ -7,9 +7,13 @@ class VideoBox extends React.Component {
     return (
       // <YouTubePlayer videoUrl="http://www.youtube.com/embed/oPpekcveMOQ" />
       <div className="video-box" height width>
-        <EasterEgg></EasterEgg>
-        <YouTubePlayer videoId="2Rxoz13Bthc" />
-        <VideoControls></VideoControls>
+        <div>
+          <VideoControls></VideoControls>
+        </div>
+        <div>
+          <EasterEgg></EasterEgg>
+          <YouTubePlayer videoId="2Rxoz13Bthc" />
+        </div>
       </div>
     );
   }
