@@ -48,6 +48,10 @@ class YouTubePlayer extends React.Component {
     }
 
     function onPlayerStateChange(event) {
+      AppDispatcher.dispatch({
+        eventName: '',
+        item: {key: 'property'}
+      })
     }
 
     function stopVideo() {

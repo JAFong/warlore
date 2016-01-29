@@ -1,18 +1,30 @@
+import TimeStore from './../stores/timeStore.jsx'
+
 class VideoControlBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playerTime: TimeStore.getTime()
+    }
+    console.log(Flux);
+    console.log(this.state);
+  }
   componentDidMount() {
-    var bar = document.getElementById('progress-bar');
-    bar.addEventListener('barUpdate', function(time) {
-      updateProgressBar(time);
-    }.bind(this));
+    this.store = TimeStore;
+    this.store.addChangeListener(this.onStoreChange);
+  }
+  componentWillUnmount() {
+    this.store.removeChangeListener(this.onStoreChange);
+  }
+  onStoreChange() {
+    this.setState({
+      playerTime: this.store.getTime()
+    })
   }
   render () {
     return (
-      <progress id="progress-bar" min="0" max="100"></progress>
+      <div>SomethingSomethingSomethingSomething</div>
     )
-  }
-  updateProgressBar() {
-    var progressBar = document.getElementById('progress-bar');
-    var percentage = Math.floor((100 / 10));
   }
 }
 
