@@ -11,9 +11,9 @@ body
   background-color: black
   overflow: hidden
 #header
-  display: none
-  background: #272727
-  position: absolute
+display: none
+background: #272727
+position: absolute
   top: 0
   left: 0
   height: 70px
@@ -48,14 +48,24 @@ body
   width: 100% !important
   height: 100% !important
 
+.progress-container
+  position: absolute
+  width: 100%
+  height: 20px
+  z-index: 1
+  bottom: 65px
+
 .progress-background
   position: absolute
+  bottom: 0
   width: 100%
   background-color: grey
   height: 5px
-  z-index: 1
-  bottom: 65px
   animation: reduceProgress 1.0s forwards
 
-.progress-background:hover
+.progress-background.hover
   animation: expandProgress 1.0s forwards
+
+.progress-crawler
+  height: 100%
+  background-color red

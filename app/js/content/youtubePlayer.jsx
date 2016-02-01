@@ -48,17 +48,21 @@ class YouTubePlayer extends React.Component {
     }.bind(this);
 
     function onPlayerReady(event) {
-      // setInterval(function() {
-      //   var currentTime = this.player.getCurrentTime();
-      //   var percentagePlayed = (currentTime / this.player.getDuration());
-      //   AppDispatcher.dispatch({
-      //     eventName: 'timeChange',
-      //     time: {
-      //       currentTime: currentTime,
-      //       percentagePlayed: percentagePlayed
-      //     }
-      //   })
-      // }.bind(this), 500)
+      // Change from on PlayerReady to on playerStateChange
+      // only set interval if playing or seeking
+      // otherwise remove interval
+
+      setInterval(function() {
+        var currentTime = this.player.getCurrentTime();
+        var percentagePlayed = (currentTime / this.player.getDuration()) * 100;
+        AppDispatcher.dispatch({
+          eventName: 'timeChange',
+          time: {
+            currentTime: currentTime,
+            percentagePlayed: percentagePlayed
+          }
+        })
+      }.bind(this), 50)
     }
 
     function onPlayerStateChange(event) {
