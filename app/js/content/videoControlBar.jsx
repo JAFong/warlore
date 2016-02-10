@@ -1,4 +1,5 @@
 import TimeStore from './../stores/timeStore.jsx'
+import AppDispatcher from '../AppDispatcher.jsx'
 
 class VideoControlBar extends React.Component {
   constructor(props) {
@@ -18,15 +19,15 @@ class VideoControlBar extends React.Component {
     $('.progress-background').addClass('hover');
   }
   componentDidMount() {
-    this.store = TimeStore;
-    this.store.addChangeListener(this.onStoreChange.bind(this));
+    this.timeStore = TimeStore;
+    this.timeStore.addChangeListener(this.onStoreChange.bind(this));
   }
   componentWillUnmount() {
-    this.store.removeChangeListener(this.onStoreChange.bind(this));
+    this.timeStore.removeChangeListener(this.onStoreChange.bind(this));
   }
   onStoreChange() {
     var self = this;
-    var playerTime =  self.store.getTime();
+    var playerTime =  self.timeStore.getTime();
     var currentTime = playerTime.currentTime;
     var percentagePlayed = playerTime.percentagePlayed + "%";
     self.setState({
@@ -34,10 +35,21 @@ class VideoControlBar extends React.Component {
       percentagePlayed: percentagePlayed
     });
   }
+  scrubVideo(e) {
+    var relX = e.pageX;
+    var loaderWidth = e.currentTarget.clientWidth;
+    var percentagePlayed = relX/loaderWidth * 100;
+    AppDispatcher.dispatch({
+      eventName: 'scrubVideo',
+      time: {
+        percentagePlayed: percentagePlayed
+      }
+    })
+  }
   render () {
     return (
       <div className="progress-container" onMouseEnter={this.expandBar} onMouseLeave={this.minimizeBar}>
-        <div className="progress-background">
+        <div className="progress-background" onMouseDown={this.scrubVideo}>
           <div className="progress-crawler" style={{
             width: this.state.percentagePlayed
           }}></div>

@@ -1,4 +1,5 @@
 import AppDispatcher from '../AppDispatcher.jsx'
+import TimeStore from './../stores/timeStore.jsx'
 
 var playerParams = {
   autoplay: 0,
@@ -28,6 +29,17 @@ class YouTubePlayer extends React.Component {
     }
     this.setState({videoId: urlWithParams});
     this.loadYtPlayer();
+
+    this.timeStore = TimeStore;
+    this.timeStore.addScrubListener(this.onScrub.bind(this));
+  }
+  componentWillUnmount() {
+    this.timeStore.removeScrubListener(this.onScrub.bind(this));
+  }
+  onScrub() {
+    var playerTime = this.timeStore.getTime();
+    var currentTime = playerTime.currentTime;
+    this.player.seekTo(currentTime, true);
   }
   loadYtPlayer() {
     var tag = document.createElement('script');
@@ -51,6 +63,12 @@ class YouTubePlayer extends React.Component {
       // Change from on PlayerReady to on playerStateChange
       // only set interval if playing or seeking
       // otherwise remove interval
+      AppDispatcher.dispatch({
+        eventName: 'youtubePlayerInit',
+        time: {
+          totalTime: this.player.getDuration()
+        }
+      });
 
       setInterval(function() {
         var currentTime = this.player.getCurrentTime();

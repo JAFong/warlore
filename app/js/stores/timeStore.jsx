@@ -9,13 +9,28 @@ var TimeStore = {
       percentagePlayed: this.percentagePlayed
     }
   },
+  initStore(totalTime) {
+    this.totalTime = totalTime;
+  },
   updateTime(currentTime, percentagePlayed) {
-    if (currentTime) {
+    if (currentTime && !percentagePlayed) {
       this.currentTime = currentTime;
+      this.percentagePlayed = currentTime/this.totalTime * 100 + "%"
+      return;
     }
-    if (percentagePlayed) {
+    if (!currentTime && percentagePlayed) {
       this.percentagePlayed = percentagePlayed;
+      this.currentTime = this.totalTime * percentagePlayed / 100
+      return;
     }
+      this.currentTime = currentTime;
+      this.percentagePlayed = percentagePlayed;
+  },
+  addScrubListener(callback) {
+    $(this).on('timeStoreScrub', callback);
+  },
+  removeScrubListener(callback) {
+    $(this).off('timeScoreScrub', callback);
   },
   addChangeListener(callback) {
     $(this).on('timeStoreChange', callback);
@@ -30,6 +45,13 @@ AppDispatcher.register(function(data) {
     case 'timeChange':
       TimeStore.updateTime(data.time.currentTime, data.time.percentagePlayed)
       $(TimeStore).trigger('timeStoreChange')
+      break;
+    case 'scrubVideo':
+      TimeStore.updateTime(null, data.time.percentagePlayed)
+      $(TimeStore).trigger('timeStoreScrub')
+      break;
+    case 'youtubePlayerInit':
+      TimeStore.initStore(data.time.totalTime);
       break;
     default:
 
