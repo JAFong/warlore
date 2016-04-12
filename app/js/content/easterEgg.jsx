@@ -11,11 +11,11 @@ class EasterEgg extends React.Component {
       currentTime: currentTime,
       percentagePlayed: "0%",
       events: this.props.eggEvents,
-      eggVisibility: "hidden"
-    }
-    this.eggEvent = {
-      x: 0,
-      y: 0
+      eggVisibility: "visible",
+      currentEgg: {
+        x: 0,
+        y: 0
+      }
     }
   }
   componentDidMount() {
@@ -29,29 +29,37 @@ class EasterEgg extends React.Component {
     var events = this.state.events;
     var playerTime = this.timeStore.getTime();
     var currentTime = playerTime.currentTime;
-    this.eggEvent;
+    this.state.currentEgg;
 
     // Possibly enable a timer until event can be displayed
     // same time length as the animation loop duration
 
     // rounded currentTime
     Math.floor(currentTime);
+    // if currentTime is in events, display the egg
   }
-  displayEgg() {
+  displayEgg(egg) {
 
+  }
+  unlockReward() {
+    AppDispatcher.dispatch({
+      eventName: 'eggUnlocked',
+      egg: this.state.currentEgg
+    });
   }
   render() {
     return (
       <div style={{
-        left: this.eggEvent.x,
-        top: this.eggEvent.y,
+        left: this.state.currentEgg.x,
+        top: this.state.currentEgg.y,
         background: 'red',
         height: '250px',
         width: '250px',
         position: 'absolute',
         zIndex: '1',
         visibility: this.state.eggVisibility,
-      }}></div>
+      }}
+      onMouseDown={this.unlockReward.bind(this)}></div>
     )
   }
 }

@@ -1,5 +1,6 @@
 import AppDispatcher from '../AppDispatcher.jsx'
 import TimeStore from './../stores/timeStore.jsx'
+import EggStore from './../stores/eggStore.jsx'
 
 var playerParams = {
   autoplay: 0,
@@ -32,15 +33,23 @@ class YouTubePlayer extends React.Component {
 
     this.timeStore = TimeStore;
     this.timeStore.addScrubListener(this.onScrub.bind(this));
+
+    this.eggStore = EggStore;
+    this.eggStore = this.eggStore.addUnlockListener(this.onUnlock.bind(this));
   }
   componentWillUnmount() {
-    this.timeStore.removeScrubListener(this.onScrub.bind(this));
+    this.timeStore.removeScrubListener(function() {});
+    this.timeStore.removeUnlockListener(function() {});
   }
   // On video scrub, set video to time and set state time.
   onScrub() {
     var playerTime = this.timeStore.getTime();
     var currentTime = playerTime.currentTime;
     this.player.seekTo(currentTime, true);
+  }
+  // On unlock, pause video
+  onUnlock() {
+    this.player.pauseVideo();
   }
   loadYtPlayer() {
     var tag = document.createElement('script');
