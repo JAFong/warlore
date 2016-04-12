@@ -1,16 +1,26 @@
-import React from 'react';
 import YouTubePlayer from './youtubePlayer.jsx'
 import EasterEgg from './easterEgg.jsx'
 import VideoControls from './videoControls.jsx'
 
 class VideoBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.eggEvents = {
+      time: {
+        name: "",
+        x: 0,
+        y: 0
+      }
+    };
+  }
   render() {
     return (
-      // <YouTubePlayer videoUrl="http://www.youtube.com/embed/oPpekcveMOQ" />
-      <div className="video-box" height width>
-        <EasterEgg></EasterEgg>
-        <YouTubePlayer videoUrl="http://www.youtube.com/embed/2Rxoz13Bthc" />
+      <div>
         <VideoControls></VideoControls>
+        <div className="video-box" height width>
+          <EasterEgg eggEvents={this.eggEvents}></EasterEgg>
+          <YouTubePlayer videoId="2Rxoz13Bthc" />
+        </div>
       </div>
     );
   }

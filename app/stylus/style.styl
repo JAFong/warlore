@@ -1,4 +1,6 @@
 @require mixins
+@require animations
+
 html, body
   height: 100%
 
@@ -8,7 +10,12 @@ body
   color: #B7B7B7
   background-color: black
   overflow: hidden
+
 .header-wrapper
+  position: absolute
+#header
+  display: none
+  background: #272727
   position: absolute
   top: 0
   left: 0
@@ -50,21 +57,43 @@ body
   top: -37px
   // pointer-events: none
 
-.YTplayer
+#YTplayer
   position: absolute
   top: 0
   left: 0
   width: 100% !important
   height: 100% !important
 
-  @keyframes slide-up
-    0%
-      margin-top: 0
-    100%
-      margin-top -70px
+@keyframes slide-up
+  0%
+    margin-top: 0
+  100%
+    margin-top -70px
 
-  @keyframes slide-down
-    0%
-      margin-top: -70px
-    100%
-      margin-top 0
+@keyframes slide-down
+  0%
+    margin-top: -70px
+  100%
+    margin-top 0
+.progress-container
+  position: absolute
+  width: 100%
+  height: 20px
+  z-index: 1
+  bottom: 65px
+
+.progress-background
+  position: absolute
+  bottom: 0
+  width: 100%
+  background-color: grey
+  height: 5px
+  animation: reduceProgress 1.0s forwards
+
+.progress-background.hover
+  animation: expandProgress 1.0s forwards
+
+.progress-crawler
+  height: 100%
+  background-color: red
+  // transition: width 1s 0s

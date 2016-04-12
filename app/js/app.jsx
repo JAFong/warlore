@@ -1,7 +1,10 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
-import HeaderBox from './header/headerBox.jsx'
-import VideoBox from './content/videoBox.jsx'
-import FooterBox from './footer/footerBox.jsx'
+import Flux from 'flux';
+import AppDispatcher from './appDispatcher.jsx';
+import HeaderBox from './header/headerBox.jsx';
+import VideoBox from './content/videoBox.jsx';
+import FooterBox from './footer/footerBox.jsx';
 
 ReactDOM.render(
   <HeaderBox />,

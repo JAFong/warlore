@@ -1,5 +1,3 @@
-import React from 'react';
-
 class HeaderBox extends React.Component {
   mouseOver() {
     $(".header-style").removeClass("hide").addClass("show");

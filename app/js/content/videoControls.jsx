@@ -1,9 +1,9 @@
-import React from 'react';
+import VideoControlBar from './videoControlBar.jsx'
 
 class VideoControls extends React.Component {
   render() {
     return (
-      <div></div>
+      <VideoControlBar></VideoControlBar>
     )
   }
 }

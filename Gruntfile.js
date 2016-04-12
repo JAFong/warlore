@@ -61,7 +61,7 @@ module.exports = function(grunt) {
           transform: ["babelify"]
         },
         files: {
-          "./public/js/bundle.js": ["./app/js/app.jsx"]
+          "./public/js/bundle.js": ["./app/app.js", "./app/js/app.jsx"]
         }
       }
     }
