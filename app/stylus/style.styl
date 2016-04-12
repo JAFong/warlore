@@ -8,15 +8,26 @@ body
   color: #B7B7B7
   background-color: black
   overflow: hidden
-#header
-  display: none
-  background: #272727
+.header-wrapper
   position: absolute
   top: 0
   left: 0
   height: 70px
   width: 100%
   z-index: 5
+.header-style
+  height: 100%
+  width: 100%
+  background: #272727
+.header-style.hide
+  animation-name: slide-up
+  animation-duration: 1s
+  animation-duration-count: 1
+  margin-top: -70px
+.header-style.show
+  animation-name: slide-down
+  animation-duration: 1s
+  animation-duration-count: 1
 #content
   position: absolute
   background-color: transparent
@@ -45,3 +56,15 @@ body
   left: 0
   width: 100% !important
   height: 100% !important
+
+  @keyframes slide-up
+    0%
+      margin-top: 0
+    100%
+      margin-top -70px
+
+  @keyframes slide-down
+    0%
+      margin-top: -70px
+    100%
+      margin-top 0
