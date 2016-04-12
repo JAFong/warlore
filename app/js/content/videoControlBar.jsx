@@ -4,7 +4,7 @@ import AppDispatcher from '../AppDispatcher.jsx'
 class VideoControlBar extends React.Component {
   constructor(props) {
     super(props);
-    var playerTime =  TimeStore.getTime();
+    var playerTime = TimeStore.getTime();
     var currentTime = playerTime.currentTime;
     var percentagePlayed = playerTime.percentagePlayed;
     this.state = {
@@ -26,11 +26,10 @@ class VideoControlBar extends React.Component {
     this.timeStore.removeChangeListener(this.onStoreChange.bind(this));
   }
   onStoreChange() {
-    var self = this;
-    var playerTime =  self.timeStore.getTime();
+    var playerTime = this.timeStore.getTime();
     var currentTime = playerTime.currentTime;
     var percentagePlayed = playerTime.percentagePlayed + "%";
-    self.setState({
+    this.setState({
       currentTime: currentTime,
       percentagePlayed: percentagePlayed
     });

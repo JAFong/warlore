@@ -36,6 +36,7 @@ class YouTubePlayer extends React.Component {
   componentWillUnmount() {
     this.timeStore.removeScrubListener(this.onScrub.bind(this));
   }
+  // On video scrub, set video to time and set state time.
   onScrub() {
     var playerTime = this.timeStore.getTime();
     var currentTime = playerTime.currentTime;
@@ -69,7 +70,7 @@ class YouTubePlayer extends React.Component {
           totalTime: this.player.getDuration()
         }
       });
-
+      // Tells application to update the current video time
       setInterval(function() {
         var currentTime = this.player.getCurrentTime();
         var percentagePlayed = (currentTime / this.player.getDuration()) * 100;
