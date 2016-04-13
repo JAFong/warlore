@@ -15,10 +15,10 @@ class Modal extends React.Component {
   componentWillUnmount() {
     this.eggStore.removeUnlockListener(function() {})
   }
-  onEggUnlock() {
+  onEggUnlock(event, egg) {
     this.setState({
       visibility: 'visible',
-      name: 'test'
+      name: egg.name
     })
   }
   closeModal() {

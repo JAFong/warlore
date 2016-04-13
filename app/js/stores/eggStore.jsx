@@ -18,7 +18,7 @@ AppDispatcher.register(function(data) {
       EggStore.unlockEgg(data.egg.name);
       // Stop Video
       // Open Modal
-      $(EggStore).trigger('eggStoreUnlock');
+      $(EggStore).trigger('eggStoreUnlock', data.egg);
       break;
     default:
   }

@@ -11,10 +11,12 @@ class EasterEgg extends React.Component {
       currentTime: currentTime,
       percentagePlayed: "0%",
       events: this.props.eggEvents,
-      eggVisibility: "hidden",
+      eggVisibility: "visible",
+      // eggVisibility: "hidden",
       currentEgg: {
         x: 0,
-        y: 0
+        y: 0,
+        name: 'test'
       }
     }
   }
