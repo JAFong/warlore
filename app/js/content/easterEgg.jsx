@@ -39,7 +39,7 @@ class EasterEgg extends React.Component {
 
     // rounded currentTime
     // if currentTime is in events, display the egg
-    if (this.props.eggEvents[currentTime]) {
+    if (this.props.eggEvents[currentTime] && !this.props.eggEvents[currentTime].unlocked) {
       this.setState({
         lastEggTime: Math.floor(currentTime),
         percentagePlayed: "0%",

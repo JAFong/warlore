@@ -1,8 +1,10 @@
+import EggEvents from './../eggEvents.jsx'
 import AppDispatcher from '../AppDispatcher.jsx'
 
 var EggStore = {
   unlockEgg(egg) {
     localStorage.setItem(egg.name, JSON.stringify(egg));
+    EggEvents.unlocked = true;
   },
   addUnlockListener(callback) {
     $(this).on('eggStoreUnlock', callback);

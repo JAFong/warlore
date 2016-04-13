@@ -1,19 +1,12 @@
 import YouTubePlayer from './youtubePlayer.jsx'
 import EasterEgg from './easterEgg.jsx'
 import VideoControls from './videoControls.jsx'
+import EggEvents from './../eggEvents.jsx'
 
 class VideoBox extends React.Component {
   constructor(props) {
     super(props);
-    this.eggEvents = {
-      5: {
-        name: '',
-        description: '',
-        image: '',
-        x: 0,
-        y: 0
-      }
-    };
+    this.eggEvents = EggEvents;
   }
   render() {
     return (
