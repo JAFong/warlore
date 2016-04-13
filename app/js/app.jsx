@@ -5,6 +5,7 @@ import AppDispatcher from './appDispatcher.jsx';
 import HeaderBox from './header/headerBox.jsx';
 import VideoBox from './content/videoBox.jsx';
 import FooterBox from './footer/footerBox.jsx';
+import Modal from './modal/modal.jsx';
 
 ReactDOM.render(
   <HeaderBox />,
@@ -19,4 +20,9 @@ ReactDOM.render(
 ReactDOM.render(
   <FooterBox />,
   document.getElementById('footer')
+);
+
+ReactDOM.render(
+  <Modal />,
+  document.getElementById('modal')
 );

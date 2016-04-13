@@ -11,7 +11,7 @@ class EasterEgg extends React.Component {
       currentTime: currentTime,
       percentagePlayed: "0%",
       events: this.props.eggEvents,
-      eggVisibility: "visible",
+      eggVisibility: "hidden",
       currentEgg: {
         x: 0,
         y: 0
@@ -23,7 +23,7 @@ class EasterEgg extends React.Component {
     this.timeStore.addChangeListener(this.onStoreChange.bind(this));
   }
   componentWillUnmount() {
-    this.timeStore.removeChangeListener(this.onStoreChange.bind(this));
+    this.timeStore.removeChangeListener(function() {});
   }
   onStoreChange() {
     var events = this.state.events;
@@ -57,7 +57,7 @@ class EasterEgg extends React.Component {
         width: '250px',
         position: 'absolute',
         zIndex: '1',
-        visibility: this.state.eggVisibility,
+        visibility: this.state.eggVisibility
       }}
       onMouseDown={this.unlockReward.bind(this)}></div>
     )
