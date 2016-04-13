@@ -12,11 +12,26 @@ class Modal extends React.Component {
   componentDidMount() {
     this.eggStore = EggStore;
     this.eggStore.addUnlockListener(this.onEggUnlock.bind(this));
+
+    AppDispatcher.register(function(data) {
+      switch(data.eventName) {
+        case 'showModal':
+          this.openModal(data.egg);
+          break;
+        default:
+      }
+    }.bind(this));
   }
   componentWillUnmount() {
     this.eggStore.removeUnlockListener(function() {})
   }
   onEggUnlock(event, egg) {
+    this.setState({
+      visibility: 'visible',
+      name: egg.name
+    })
+  }
+  openModal(egg) {
     this.setState({
       visibility: 'visible',
       name: egg.name

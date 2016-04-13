@@ -45,6 +45,9 @@ class YouTubePlayer extends React.Component {
         case 'modalClosed':
           this.onModalClose();
           break;
+        case 'showModal':
+          this.onModalOpen();
+          break;
         default:
       }
     }.bind(this));
@@ -64,6 +67,10 @@ class YouTubePlayer extends React.Component {
   }
   // On unlock, pause video
   onUnlock() {
+    this.player.pauseVideo();
+  }
+  // On modal open, pause video
+  onModalOpen() {
     this.player.pauseVideo();
   }
   loadYtPlayer() {

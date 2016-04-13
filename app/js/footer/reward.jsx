@@ -1,3 +1,4 @@
+import AppDispatcher from '../AppDispatcher.jsx'
 import EggStore from './../stores/eggStore.jsx'
 
 class RewardItem extends React.Component {
@@ -22,12 +23,22 @@ class RewardItem extends React.Component {
   }
   onEggUnlock(event, egg) {
     if (egg.name === this.props.rewardName) {
-      console.log('THIS IS EGG');
+      this.setState({
+        rewardUnlocked: true
+      });
+    }
+  }
+  showReward() {
+    if (this.state.rewardUnlocked) {
+      AppDispatcher.dispatch({
+        eventName: 'showModal',
+        egg: JSON.parse(localStorage[this.props.rewardName])
+      });
     }
   }
   render() {
     return (
-      <div>
+      <div onMouseDown={this.showReward.bind(this)}>
         <span>{this.state.rewardUnlocked ? '!' : '?'}</span>
       </div>
     )

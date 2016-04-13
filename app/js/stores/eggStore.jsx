@@ -1,8 +1,8 @@
 import AppDispatcher from '../AppDispatcher.jsx'
 
 var EggStore = {
-  unlockEgg(name) {
-    localStorage.setItem(name, true);
+  unlockEgg(egg) {
+    localStorage.setItem(egg.name, JSON.stringify(egg));
   },
   addUnlockListener(callback) {
     $(this).on('eggStoreUnlock', callback);
@@ -15,7 +15,7 @@ var EggStore = {
 AppDispatcher.register(function(data) {
   switch (data.eventName) {
     case 'eggUnlocked':
-      EggStore.unlockEgg(data.egg.name);
+      EggStore.unlockEgg(data.egg);
       // Stop Video
       // Open Modal
       $(EggStore).trigger('eggStoreUnlock', data.egg);
