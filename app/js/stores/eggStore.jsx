@@ -4,7 +4,9 @@ import AppDispatcher from '../AppDispatcher.jsx'
 var EggStore = {
   unlockEgg(egg, eggId) {
     localStorage.setItem(egg.name, JSON.stringify(egg));
-    EggEvents[eggId].unlocked = true;
+    if (EggEvents[eggId]) {
+      EggEvents[eggId].unlocked = true;
+    }
   },
   addUnlockListener(callback) {
     $(this).on('eggStoreUnlock', callback);

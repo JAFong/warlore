@@ -11,14 +11,14 @@ class EasterEgg extends React.Component {
     this.state = {
       lastEggTime: Math.floor(currentTime),
       percentagePlayed: "0%",
-      eggVisibility: "hidden",
+      eggVisibility: "visible",
       currentEggId: '',
       currentEgg: {
         name: '',
         description: '',
         image: '',
         x: 0,
-        y: 0,
+        y: '100px',
       }
     }
   }
@@ -55,11 +55,11 @@ class EasterEgg extends React.Component {
           lastEggTime: Math.floor(currentTime),
           percentagePlayed: "0%",
           events: this.props.eggEvents,
-          eggVisibility: "hidden",
+          eggVisibility: "visible",
           currentEggId: '',
           currentEgg: {
             x: 0,
-            y: 0,
+            y: '100px',
             name: 'test'
           }
         });
@@ -81,7 +81,6 @@ class EasterEgg extends React.Component {
       <div style={{
         left: this.state.currentEgg.x,
         top: this.state.currentEgg.y,
-        background: 'red',
         height: '250px',
         width: '250px',
         position: 'absolute',

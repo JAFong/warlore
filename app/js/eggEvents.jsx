@@ -4,7 +4,7 @@ var EggEvents = {
     description: 'This is a test event',
     image: 'this will work',
     x: 0,
-    y: 0,
+    y: '100px',
     unlocked: !!localStorage['']
   },
   2: {
@@ -12,7 +12,7 @@ var EggEvents = {
     description: 'This is a test event',
     image: 'this will work',
     x: 0,
-    y: 0,
+    y: '100px',
     unlocked: !!localStorage['Numbah 2']
   }
 }
