@@ -6,7 +6,9 @@ class Modal extends React.Component {
     super(props);
     this.state = {
       visibility: 'hidden',
-      name: ''
+      name: '',
+      description: '',
+      image: ''
     }
   }
   componentDidMount() {
@@ -28,19 +30,25 @@ class Modal extends React.Component {
   onEggUnlock(event, egg) {
     this.setState({
       visibility: 'visible',
-      name: egg.name
+      name: egg.name,
+      description: egg.description,
+      image: egg.image
     })
   }
   openModal(egg) {
     this.setState({
       visibility: 'visible',
-      name: egg.name
+      name: egg.name,
+      description: egg.description,
+      image: egg.image
     })
   }
   closeModal() {
     this.setState({
       visibility: 'hidden',
-      name: ''
+      name: '',
+      description: '',
+      image: ''
     });
     AppDispatcher.dispatch({
       eventName: 'modalClosed'
@@ -70,7 +78,21 @@ class Modal extends React.Component {
           backgroundColor: 'darkGrey',
           alignSelf: 'center'
         }} onMouseDown={this.bodyClick.bind(this)}>
+          {/* Header */}
           <div><span>{this.state.name}</span> <span>X</span></div>
+          {/* Content */}
+          <div>
+            {/* Left */}
+              <div>
+                <div>
+                  {this.state.description}
+                </div>
+              </div>
+            {/* Right */}
+              <div>
+                <image src={this.state.image}></image>
+              </div>
+          </div>
         </div>
       </div>
     )
