@@ -15,7 +15,10 @@ var playerParams = {
 class YouTubePlayer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {videoId: this.props.videoId};
+    this.state = {
+      videoId: this.props.videoId,
+      currentTime: null
+    };
   }
   componentWillMount() {
     var urlWithParams = this.state.videoId;
@@ -94,7 +97,14 @@ class YouTubePlayer extends React.Component {
       // Tells application to update the current video time
       setInterval(function() {
         var currentTime = this.player.getCurrentTime();
+
+        if (currentTime === this.state.currentTime) { return }
+
         var percentagePlayed = (currentTime / this.player.getDuration()) * 100;
+        this.setState({
+          videoId: this.props.videoId,
+          currentTime: currentTime
+        })
         AppDispatcher.dispatch({
           eventName: 'timeChange',
           time: {

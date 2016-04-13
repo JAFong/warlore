@@ -6,8 +6,10 @@ class VideoBox extends React.Component {
   constructor(props) {
     super(props);
     this.eggEvents = {
-      time: {
-        name: "",
+      5: {
+        name: '',
+        description: '',
+        image: '',
         x: 0,
         y: 0
       }
