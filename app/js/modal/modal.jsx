@@ -1,3 +1,4 @@
+import AppDispatcher from '../AppDispatcher.jsx'
 import EggStore from './../stores/eggStore.jsx'
 
 class Modal extends React.Component {
@@ -25,6 +26,9 @@ class Modal extends React.Component {
     this.setState({
       visibility: 'hidden',
       name: ''
+    });
+    AppDispatcher.dispatch({
+      eventName: 'modalClosed'
     })
   }
   bodyClick(event) {

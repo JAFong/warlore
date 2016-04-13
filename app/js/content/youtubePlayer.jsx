@@ -36,6 +36,15 @@ class YouTubePlayer extends React.Component {
 
     this.eggStore = EggStore;
     this.eggStore = this.eggStore.addUnlockListener(this.onUnlock.bind(this));
+
+    AppDispatcher.register(function(data) {
+      switch(data.eventName) {
+        case 'modalClosed':
+          this.onModalClose();
+          break;
+        default:
+      }
+    }.bind(this));
   }
   componentWillUnmount() {
     this.timeStore.removeScrubListener(function() {});
@@ -46,6 +55,9 @@ class YouTubePlayer extends React.Component {
     var playerTime = this.timeStore.getTime();
     var currentTime = playerTime.currentTime;
     this.player.seekTo(currentTime, true);
+  }
+  onModalClose() {
+    this.player.playVideo();
   }
   // On unlock, pause video
   onUnlock() {
