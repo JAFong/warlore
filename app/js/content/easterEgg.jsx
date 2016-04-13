@@ -1,5 +1,6 @@
 import AppDispatcher from '../AppDispatcher.jsx'
 import TimeStore from './../stores/timeStore.jsx'
+import SmokeEffect from './smokeEffect.jsx'
 
 class EasterEgg extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class EasterEgg extends React.Component {
       lastEggTime: Math.floor(currentTime),
       percentagePlayed: "0%",
       eggVisibility: "hidden",
+      currentEggId: '',
       currentEgg: {
         name: '',
         description: '',
@@ -45,6 +47,7 @@ class EasterEgg extends React.Component {
         percentagePlayed: "0%",
         events: this.props.eggEvents,
         eggVisibility: "visible",
+        currentEggId: currentTime,
         currentEgg: this.props.eggEvents[currentTime]
       });
       setTimeout(function() {
@@ -53,6 +56,7 @@ class EasterEgg extends React.Component {
           percentagePlayed: "0%",
           events: this.props.eggEvents,
           eggVisibility: "hidden",
+          currentEggId: '',
           currentEgg: {
             x: 0,
             y: 0,
@@ -68,7 +72,8 @@ class EasterEgg extends React.Component {
   unlockReward() {
     AppDispatcher.dispatch({
       eventName: 'eggUnlocked',
-      egg: this.state.currentEgg
+      egg: this.state.currentEgg,
+      eggId: this.state.currentEggId
     });
   }
   render() {
@@ -83,7 +88,9 @@ class EasterEgg extends React.Component {
         zIndex: '1',
         visibility: this.state.eggVisibility
       }}
-      onMouseDown={this.unlockReward.bind(this)}></div>
+      onMouseDown={this.unlockReward.bind(this)}>
+        <SmokeEffect />
+      </div>
     )
   }
 }
